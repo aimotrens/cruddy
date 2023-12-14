@@ -1,0 +1,8 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/aimotrens/impulsar/main/schema.json": [
+            "impulsar*.yml",
+            "impulsar*.yaml"
+        ]
+    }
+}

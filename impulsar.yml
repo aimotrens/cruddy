@@ -1,0 +1,86 @@
+build-docker:
+  script:
+    - docker build --platform=linux/amd64,linux/arm64 --push -f .docker/Dockerfile -t ${IMAGE} .
+
+# ---
+
+build:
+  conditional:
+    - if: ["env.os === 'linux'"]
+      overwrite:
+        script:
+          - |
+            mv frontend/dist/index.html frontend/dist/index.htm && \
+            rsync -aP --delete frontend/dist/ backend/static/
+    - if: ["env.os === 'windows'"]
+      overwrite:
+        shell:
+          type: pwsh
+        script:
+          - Move-Item frontend/dist/index.html frontend/dist/index.htm
+          - Remove-Item -Recurse -Force backend/static/*
+          - Copy-Item -Recurse frontend/dist/* backend/static/
+  jobs:pre:
+    - build-frontend
+  script:
+    - echo "Unknown platform"
+    - STOP
+  jobs:post:
+    - build-backend
+# ---
+
+build-frontend:
+  shell:
+    type: docker
+    image: node:21-alpine
+    bootCommand: ["/bin/sh", "-c"]
+  workDir: frontend
+  script:
+    - npm install
+    - npm run build
+
+# ---
+
+build-backend:
+  jobs:
+    - build-linux-amd64
+    - build-linux-arm64
+    - build-windows-amd64
+
+.build-binary: &build-binary
+  conditional:
+    - if: ["env.os === 'linux'"]
+      overwrite:
+        script:
+          - mkdir -p ../bin
+          - go build -o ../bin/cruddy_${GOOS}_${GOARCH}${EXE_SUFFIX}
+    - if: ["env.os === 'windows'"]
+      overwrite:
+        script:
+          - New-Item -ItemType Directory -Force -Path ../bin
+          - go build -o ../bin/cruddy_${GOOS}_${GOARCH}${EXE_SUFFIX}
+  workDir: backend
+  script:
+    - echo "Unknown platform"
+    - STOP
+
+build-linux-amd64:
+  <<: *build-binary
+  variables:
+    GOOS: linux
+    GOARCH: amd64
+    EXE_SUFFIX: ""
+
+build-linux-arm64:
+  <<: *build-binary
+  variables:
+    GOOS: linux
+    GOARCH: arm64
+    EXE_SUFFIX: ""
+
+build-windows-amd64:
+  <<: *build-binary
+  variables:
+    GOOS: windows
+    GOARCH: amd64
+    EXE_SUFFIX: ".exe"
