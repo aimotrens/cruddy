@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime"
 	"strconv"
 
 	"github.com/aimotrens/cruddy/app/api"
@@ -14,7 +15,8 @@ import (
 )
 
 var (
-	compileDate string
+	compileDate   string
+	cruddyVersion string
 
 	//go:embed static
 	static embed.FS
@@ -23,7 +25,8 @@ var (
 func main() {
 	godotenv.Load()
 
-	fmt.Println("Starting Cruddy...")
+	fmt.Printf("Cruddy %s, compiled at %s on %s/%s\n", cruddyVersion, compileDate, runtime.GOOS, runtime.GOARCH)
+	fmt.Println("Starting ...")
 
 	rootDir := getEnvOrDefault("CRUDDY_ROOT_DIR", "./data")
 	portArg := getEnvOrDefault("CRUDDY_PORT", "4231")
