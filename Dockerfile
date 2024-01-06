@@ -11,7 +11,7 @@ RUN mv dist/index.html dist/index.htm
 
 # --------------------------------------------
 
-FROM golang:1.21.5-alpine3.19 AS go-builder
+FROM golang:1.21.5-alpine3.19@sha256:4db4aac30880b978cae5445dd4a706215249ad4f43d28bd7cdf7906e9be8dd6b AS go-builder
 
 ARG CRUDDY_VERSION
 
@@ -27,7 +27,7 @@ RUN go build -ldflags "-X \"main.cruddyVersion=${CRUDDY_VERSION}\" -X \"main.com
 
 # --------------------------------------------
 
-FROM alpine:3.19
+FROM alpine:3.19@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fdac340352f48
 
 WORKDIR /app
 
