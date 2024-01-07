@@ -21,7 +21,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "4.6.2",
     "autoprefixer": "10.4.16",
-    "daisyui": "4.4.23",
+    "daisyui": "4.5.0",
     "postcss": "8.4.33",
     "prettier": "3.1.1",
     "tailwindcss": "3.4.1",
