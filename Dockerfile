@@ -1,4 +1,4 @@
-FROM node:21.4-alpine3.19 AS node-builder
+FROM node:21.5-alpine3.19@sha256:82c93cef3d2acbb2557c5fda48214fbc2bf5385edfb4d96d990690d75ddabf7b AS node-builder
 
 WORKDIR /src
 
