@@ -57,15 +57,15 @@ func main() {
 	h := api.NewHandler(rootDir)
 
 	g.NoRoute(h.NoRoute(static))
-	api := g.Group(apiBase)
+	apiRoute := g.Group(apiBase)
 	{
-		api.GET("/list", h.List)
-		api.GET("/download", h.Download)
-		api.POST("/upload", h.Upload)
-		api.POST("/delete", h.Delete)
-		api.POST("/mkdir", h.Mkdir)
-		api.POST("/move", h.Move)
-		api.POST("/copy", h.Copy)
+		apiRoute.GET("/list", h.List)
+		apiRoute.GET("/download", h.Download)
+		apiRoute.POST("/upload", h.Upload)
+		apiRoute.POST("/delete", h.Delete)
+		apiRoute.POST("/mkdir", h.Mkdir)
+		apiRoute.POST("/move", h.Move)
+		apiRoute.POST("/copy", h.Copy)
 	}
 
 	err := g.Run(":" + portArg)
