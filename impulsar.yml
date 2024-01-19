@@ -1,4 +1,16 @@
 build:
+  jobs:
+    - build-frontend
+    - copy
+    - build-backend
+
+build-frontend:
+  workDir: frontend
+  script:
+    - npm install
+    - npm run build
+
+copy:
   conditional:
     - if: ["env.os === 'linux'"]
       overwrite:
@@ -14,19 +26,9 @@ build:
           - Move-Item frontend/dist/index.html frontend/dist/index.htm
           - Remove-Item -Recurse -Force backend/static/*
           - Copy-Item -Recurse frontend/dist/* backend/static/
-  jobs:pre:
-    - build-frontend
   script:
     - echo "Unknown platform"
     - STOP
-  jobs:post:
-    - build-backend
-
-build-frontend:
-  workDir: frontend
-  script:
-    - npm install
-    - npm run build
 
 build-backend:
   foreach: &platforms
