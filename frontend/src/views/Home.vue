@@ -134,13 +134,13 @@ function onItemOperationError(error: string) {
           <label tabindex="0" class="px-3 m-1 cursor-pointer"><i class="fa fa-ellipsis-vertical" /></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <button @click="showModal('moveModal' + item.name)">
+              <button @click="showModal('moveModal' + item.name)" disabled>
                 <i class="fa fa-file-export" />
                 Verschieben
               </button>
             </li>
             <li>
-              <button @click="showModal('copyModal' + item.name)">
+              <button @click="showModal('copyModal' + item.name)" disabled>
                 <i class="fa fa-copy" />
                 Kopieren
               </button>
