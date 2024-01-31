@@ -82,5 +82,8 @@ pack-release:
 # ---
 
 build-docker:
+  arguments:
+    IMAGE: Name des Dockerimages
+    VERSION: Version des Dockerimages
   script:
-    - docker build --platform=linux/amd64,linux/arm64 --push -f .docker/Dockerfile -t ${IMAGE} .
+    - docker build --platform=linux/amd64,linux/arm64 --push -f Dockerfile -t ${IMAGE}:latest -t ${IMAGE}:${VERSION} .
