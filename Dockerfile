@@ -37,4 +37,12 @@ EXPOSE 4231
 ENV GIN_MODE=release
 ENV CRUDDY_ROOT_DIR=/srv
 
+RUN mkdir -p /srv && \
+    addgroup -S -g 1000 cruddy && \
+    adduser -S -D -H -u 1000 cruddy && \
+    addgroup cruddy cruddy && \
+    chown -R cruddy:cruddy /srv
+
+USER 1000
+
 CMD ["./cruddy"]
