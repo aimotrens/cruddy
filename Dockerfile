@@ -11,7 +11,7 @@ RUN mv dist/index.html dist/index.htm
 
 # --------------------------------------------
 
-FROM golang:1.21.7-alpine3.19@sha256:f1728dfefc1d1bd8b6e64f9e8ce69eb1795fb72ceb079dea68595487f9a682cd AS go-builder
+FROM golang:1.22.0-alpine3.19@sha256:8e96e6cff6a388c2f70f5f662b64120941fcd7d4b89d62fec87520323a316bd9 AS go-builder
 
 ARG CRUDDY_VERSION
 
