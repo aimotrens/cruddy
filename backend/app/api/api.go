@@ -2,7 +2,8 @@ package api
 
 import (
 	"os"
-	"path"
+	"path/filepath"
+	"strings"
 )
 
 type Handler struct {
@@ -14,12 +15,19 @@ func NewHandler(rootDir string) *Handler {
 }
 
 func (h *Handler) getFullpathChecked(reqPath string) (string, bool) {
-	fullpath := path.Join(h.rootDir, reqPath)
+	joinedReqPath := filepath.Join(h.rootDir, reqPath)
 
-	_, err := os.Stat(fullpath)
-	if os.IsNotExist(err) {
-		return fullpath, false
+	rootFullpath, _ := filepath.Abs(h.rootDir)
+	reqFullpath, _ := filepath.Abs(joinedReqPath)
+
+	if !strings.HasPrefix(reqFullpath, rootFullpath) {
+		return "", false
 	}
 
-	return fullpath, true
+	_, err := os.Stat(reqFullpath)
+	if os.IsNotExist(err) {
+		return "", false
+	}
+
+	return reqFullpath, true
 }
