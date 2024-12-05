@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import daisyUi from 'daisyui';
+
 export default {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'media', // or 'media' or 'class'
@@ -41,5 +44,5 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [import("daisyui")],
+  plugins: [daisyUi],
 }
