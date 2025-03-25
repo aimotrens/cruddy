@@ -1,5 +1,5 @@
-const apiDomain = "";
-//const apiDomain = "http://localhost:4231";
+//const apiDomain = "";
+const apiDomain = "http://localhost:4231";
 
 const cfg = {
   Api: {
