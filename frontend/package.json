@@ -21,7 +21,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.7",
     "@vitejs/plugin-vue": "5.2.4",
-    "daisyui": "5.0.37",
+    "daisyui": "5.0.40",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
     "tailwindcss": "4.1.7",
