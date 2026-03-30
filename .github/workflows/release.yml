@@ -47,7 +47,7 @@ jobs:
       with:
         go-version: '1.26.1'
     - name: impulsar vorbereiten
-      uses: aimotrens/impulsar@023a2ca8e09a6fa9ac5ed081cd77068133a2c9a8 # main
+      uses: aimotrens/impulsar@31ff1548639cdee04a12c269206b647b1c288639 # main
     - name: Build
       env:
         CRUDDY_VERSION: ${{ needs.tag-next-version.outputs.version }}
