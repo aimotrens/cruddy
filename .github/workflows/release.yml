@@ -45,7 +45,7 @@ jobs:
     - name: go vorbereiten
       uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6
       with:
-        go-version: '1.26.2'
+        go-version: '1.26.3'
     - name: impulsar vorbereiten
       uses: aimotrens/impulsar@d7bc89934491e27967c5034bbaf86e0368b452e2 # main
     - name: Build
