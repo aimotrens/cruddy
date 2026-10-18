@@ -22,7 +22,7 @@
     "@tailwindcss/postcss": "4.3.3",
     "@vitejs/plugin-vue": "6.0.10",
     "daisyui": "5.7.50",
-    "postcss": "8.5.29",
+    "postcss": "8.5.30",
     "prettier": "3.9.10",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
